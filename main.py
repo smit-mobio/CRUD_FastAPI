@@ -51,22 +51,6 @@ def update_item_completly(id:int, item:Items):
     item_to_update.updated_on = datetime.now()
     return {'message':'Your item is successfully updated!'}
 
-@app.delete('/items')
-def remove_all_items():
-    items = models.Items.__table__.delete()
-    db.execute(items)
-    db.commit()
-    return {'message':'All items has been removed successfully!'}
-
-@app.delete('/items/{id}')
-def remove_an_item(id:int):
-    item_to_remove = db.query(models.Items).filter_by(id = id).first()
-    if not item_to_remove:
-        return {'message':"Item you are looking for isn't exists!"}
-    db.delete(item_to_remove)
-    db.commit()
-    return {'message':'Your items has been removed successfully!'}
-
 
 if __name__ == "__main__":
     uvicorn.run(app)
