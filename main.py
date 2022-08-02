@@ -18,8 +18,10 @@ db = SessionLocal()
 
 @app.post('/items', response_model=Items, status_code=status.HTTP_201_CREATED)
 def create_an_item(item: Items):
-    new_item = models.Items(name=item.name, price=item.price, on_offer=item.on_offer,
-                            created_on=datetime.now(), updated_on=datetime.now())
+    new_item = models.Items(
+        name=item.name, price=item.price, on_offer=item.on_offer,
+        created_on=datetime.now(), updated_on=datetime.now(),
+    )
     db.add(new_item)
     db.commit()
     return new_item
