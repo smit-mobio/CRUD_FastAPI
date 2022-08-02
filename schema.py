@@ -7,3 +7,6 @@ class Items(BaseModel):
     on_offer:bool
     created_on:datetime
     updated_on:datetime
+    
+    class Config:
+        orm_mode = True
