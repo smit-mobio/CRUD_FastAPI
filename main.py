@@ -30,5 +30,28 @@ def get_item(id:int):
         return {'message': "Item not exists!"}
     return item
 
+
+@app.patch('/items/{id}', status_code=status.HTTP_200_OK)
+def update_item_partially(id:int, item:Items):
+    item_to_update = db.query(models.Items).filter_by(id = id).first()
+    if not item_to_update:
+        return {'message':"Item you are looking for isn't exists!"}
+    item_to_update.name = item.name
+    item_to_update.updated_on = datetime.now()
+    return {'message':'Your item is successfully updated!'}
+    
+@app.put('/items/{id}', status_code=status.HTTP_200_OK)
+def update_item_completly(id:int, item:Items):
+    item_to_update = db.query(models.Items).filter_by(id = id).first()
+    if not item_to_update:
+        return {'message':"Item you are looking for isn't exists!"}
+    item_to_update.name = item.name
+    item_to_update.price = item.price
+    item_to_update.on_offer = item.on_offer
+    item_to_update.updated_on = datetime.now()
+    return {'message':'Your item is successfully updated!'}
+
+
+
 if __name__ == "__main__":
     uvicorn.run(app)
