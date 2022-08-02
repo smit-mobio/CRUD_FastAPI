@@ -2,6 +2,7 @@ from datetime import datetime
 from pydantic import BaseModel
 
 class Items(BaseModel):
+    id:int
     name:str   
     price:int
     on_offer:bool
