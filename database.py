@@ -6,7 +6,8 @@ from sqlalchemy.orm import sessionmaker
 
 
 engine = create_engine(
-    'postgresql://postgres:1605@localhost:5432/CRUD_FastAPI', echo=True)
+    'postgresql://postgres:1605@localhost:5432/CRUD_FastAPI', echo=True,
+)
 
 Base = declarative_base()
 
